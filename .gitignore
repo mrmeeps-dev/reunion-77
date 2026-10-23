@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Next.js build outputs
+.next/
+out/
+dist/
+.open-next/
+.wrangler/
+
+# Tests & coverage
+coverage/
+
+# Logs & caches
+*.log
+npm-debug.log*
+.npm
+.cache/
+
+# Environment
+.env
+.env.*
+!.env.example
+.dev.vars
+
+# OS & editors
+.DS_Store
+.idea/
+*.swp
+*.swo
+
+# IDE (optional local settings)
+.vscode/
+.cursor/
+
+# Duplicate / scratch assets at repo root — canonical files are in public/
+/Gemini_Generated_Image*.png
+/class logo.png
+/head-mascot.png
+/saguaro_img_homepage-aerial.jpg
+
+# Generated memory photo variants (built from photos-source/ via npm run photos:build)
+public/photos/thumbs/
+public/photos/display/
