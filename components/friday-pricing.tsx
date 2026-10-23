@@ -24,7 +24,7 @@ export function FridayPriceCallout() {
   const earlyBird = useEarlyBird();
 
   return (
-    <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-base leading-snug text-stone-800 md:text-lg">
+    <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-base leading-snug text-stone-800 md:text-lg">
       {earlyBird ? (
         <>
           <p className="font-semibold">

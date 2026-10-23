@@ -8,7 +8,8 @@ import { EVENT_VENUES, formatVenueAddress, venueDirectionsUrl } from '@/data/eve
 import { committeeEmailAddress, siteConfig } from '@/data/site-config';
 import Image from 'next/image';
 
-const { committeeEmail, emailSubject, graduationYear, heroDatesLine, paymentMemo, reunionLabel } = siteConfig;
+const { committeeEmail, emailSubject, graduationYear, heroDatesLine, paymentMemo, reunionLabel, comingSoon } =
+  siteConfig;
 
 const fridayVenue = EVENT_VENUES.find((venue) => venue.id === 'savoy-opera-house')!;
 const saturdayVenue = EVENT_VENUES.find((venue) => venue.id === 'gardens-at-bear-canyon')!;
@@ -41,46 +42,72 @@ export default function Home() {
             </span>
           </a>
 
-          <ul
-            className="order-last m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-8 gap-y-2 px-0 text-sm font-medium text-gray-500 md:order-none md:flex-1 md:text-base"
-            aria-label="Page sections"
-          >
-            <li>
-              <a
-                href="#schedule"
-                className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+          {!comingSoon ? (
+            <>
+              <ul
+                className="order-last m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-8 gap-y-2 px-0 text-sm font-medium text-gray-500 md:order-none md:flex-1 md:text-base"
+                aria-label="Page sections"
               >
-                Schedule
-              </a>
-            </li>
-            <li>
-              <a
-                href="#hotels"
-                className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
-              >
-                Hotels
-              </a>
-            </li>
-            <li>
-              <a
-                href="#memories"
-                className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
-              >
-                Memories
-              </a>
-            </li>
-            <li><a href="#attending" className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2">Attending</a></li>
-            <li><a href="#faq" className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2">FAQ</a></li>
-          </ul>
+                <li>
+                  <a
+                    href="#schedule"
+                    className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+                  >
+                    Schedule
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#hotels"
+                    className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+                  >
+                    Hotels
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#memories"
+                    className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+                  >
+                    Memories
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#attending"
+                    className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+                  >
+                    Attending
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#faq"
+                    className="rounded-sm transition-colors duration-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+                  >
+                    FAQ
+                  </a>
+                </li>
+              </ul>
 
-          <a href="#register" className="btn-primary shrink-0 px-5 py-2.5 text-sm md:px-6 md:text-base">Register Now</a>
+              <a href="#register" className="btn-primary shrink-0 px-5 py-2.5 text-sm md:px-6 md:text-base">
+                Register Now
+              </a>
+            </>
+          ) : (
+            <p className="text-sm font-medium text-gray-500 md:text-base">More coming soon</p>
+          )}
         </div>
       </nav>
 
-      <header className="relative flex min-h-[min(90vh,56rem)] items-center justify-center overflow-hidden px-4 py-16 sm:min-h-[84vh]">
-        <div className="absolute inset-0 bg-hero-aerial bg-cover bg-center" role="img" aria-label="Desert landscape hero photograph" />
+      <header
+        className={`relative flex items-center justify-center overflow-hidden px-4 py-16 ${
+          comingSoon ? 'min-h-screen' : 'min-h-[min(90vh,56rem)] sm:min-h-[84vh]'
+        }`}
+      >
+        <div className="absolute inset-0 bg-hero-aerial bg-cover bg-center" role="img" aria-label="Tucson desert landscape at sunset" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/55 to-slate-900/20" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(153,0,0,.25),transparent_40%),radial-gradient(circle_at_80%_100%,rgba(217,119,6,.22),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(87,102,129,.14),transparent_40%),radial-gradient(circle_at_80%_100%,rgba(139,155,184,.12),transparent_40%)]" />
 
         <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center justify-center text-center">
           <p className="mt-1 text-base font-semibold tracking-[0.08em] text-white sm:text-lg md:text-xl">
@@ -90,25 +117,39 @@ export default function Home() {
             Sahuaro High School Class of <span className="inline-flex items-baseline gap-[0.075em] whitespace-nowrap tabular-nums tracking-normal">&rsquo;77</span>
           </h1>
           <h2 className="mt-5 text-2xl font-extrabold leading-snug text-gray-100 md:mt-6 md:text-3xl">The {reunionLabel}</h2>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-200 md:text-xl">A weekend of reconnecting, celebrating, and sharing memories with classmates from the Class of &rsquo;77.</p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a href="#register" className="btn-primary px-10 py-4 text-lg md:text-xl">Register Now</a>
-            <a href="#schedule" className="btn-secondary px-8 py-4 text-lg md:text-xl">View Schedule</a>
-          </div>
-          <div className="mt-10 grid w-full max-w-3xl overflow-hidden rounded-2xl border border-white/25 bg-white/10 text-left backdrop-blur md:grid-cols-2">
-            <div className="flex min-h-[5.5rem] flex-col justify-center px-5 py-4 md:px-6">
-              <p className="text-xs uppercase tracking-[0.18em] text-stone-200">Main Event</p>
-              <p className="mt-1 text-sm font-semibold text-white md:text-base">Friday ticketed dinner</p>
-            </div>
-            <div className="flex min-h-[5.5rem] flex-col justify-center border-t border-white/20 px-5 py-4 md:border-l md:border-t-0 md:px-6">
-              <p className="text-xs uppercase tracking-[0.18em] text-stone-200">Casual Meetup</p>
-              <p className="mt-1 text-sm font-semibold text-white md:text-base">Saturday no-host gathering</p>
-            </div>
-          </div>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-200 md:text-xl">
+            {comingSoon
+              ? 'We\u2019re getting the full reunion site ready. Schedule, registration, hotels, and more will be here soon.'
+              : 'A weekend of reconnecting, celebrating, and sharing memories with classmates from the Class of \u201977.'}
+          </p>
+          {!comingSoon ? (
+            <>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                <a href="#register" className="btn-primary px-10 py-4 text-lg md:text-xl">
+                  Register Now
+                </a>
+                <a href="#schedule" className="btn-secondary px-8 py-4 text-lg md:text-xl">
+                  View Schedule
+                </a>
+              </div>
+              <div className="mt-10 grid w-full max-w-3xl overflow-hidden rounded-2xl border border-white/25 bg-white/10 text-left backdrop-blur md:grid-cols-2">
+                <div className="flex min-h-[5.5rem] flex-col justify-center px-5 py-4 md:px-6">
+                  <p className="text-xs uppercase tracking-[0.18em] text-stone-200">Main Event</p>
+                  <p className="mt-1 text-sm font-semibold text-white md:text-base">Friday ticketed dinner</p>
+                </div>
+                <div className="flex min-h-[5.5rem] flex-col justify-center border-t border-white/20 px-5 py-4 md:border-l md:border-t-0 md:px-6">
+                  <p className="text-xs uppercase tracking-[0.18em] text-stone-200">Casual Meetup</p>
+                  <p className="mt-1 text-sm font-semibold text-white md:text-base">Saturday no-host gathering</p>
+                </div>
+              </div>
+            </>
+          ) : null}
         </div>
       </header>
 
       <main id="main-content">
+        {!comingSoon ? (
+          <>
         <section id="schedule" className="reveal section-shell scroll-mt-24 bg-white md:scroll-mt-28" aria-labelledby="itinerary-heading" data-reveal>
           <div className="section-frame">
             <div className="text-center">
@@ -196,7 +237,7 @@ export default function Home() {
 
         <section
           id="memories"
-          className="reveal section-shell scroll-mt-24 bg-gradient-to-b from-rose-50/35 via-stone-50 to-stone-100 md:scroll-mt-28"
+          className="reveal section-shell scroll-mt-24 bg-gradient-to-b from-slate-50/80 via-stone-50 to-stone-100 md:scroll-mt-28"
           aria-labelledby="memories-heading"
           data-reveal
         >
@@ -280,11 +321,11 @@ export default function Home() {
 
         <section
           id="register"
-          className="reveal relative section-shell scroll-mt-24 bg-gradient-to-b from-rose-50/45 via-stone-50 to-stone-100 md:scroll-mt-28"
+          className="reveal relative section-shell scroll-mt-24 bg-gradient-to-b from-slate-50/90 via-stone-50 to-stone-100 md:scroll-mt-28"
           aria-labelledby="registration-heading"
           data-reveal
         >
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-200/55 to-transparent" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200/70 to-transparent" aria-hidden="true" />
           <div className="section-frame relative">
             <div className="text-center">
               <p className="section-kicker">Simple Signup</p>
@@ -325,8 +366,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-8 rounded-2xl border border-rose-200 bg-gradient-to-r from-rose-50 via-amber-50 to-stone-50 p-5 shadow-sm md:p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-700">Payment Quick Guide</p>
+            <div className="mt-8 rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-50 via-stone-50 to-stone-50 p-5 shadow-sm md:p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">Payment Quick Guide</p>
               <FridayPaymentGuideLine />
               <p className="mt-2 text-sm text-stone-700 md:text-base">
                 Include your name and <span className="font-semibold text-stone-900">&ldquo;{paymentMemo}&rdquo;</span> in the memo so we can match your payment quickly.
@@ -376,45 +417,46 @@ export default function Home() {
             </div>
           </div>
         </section>
+          </>
+        ) : null}
       </main>
 
-      <footer id="contact" className="border-t border-[#3a1515] bg-[#221010] py-14 text-stone-200 md:py-16" role="contentinfo">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-4 md:flex-row md:items-start md:justify-between md:gap-8">
-          <div className="text-center md:text-left">
-            <p className="text-lg font-semibold text-white md:text-xl">Reunion Committee</p>
-            <nav className="mt-5 flex flex-col gap-4 text-lg md:text-xl" aria-label="Committee contact">
-              <ProtectedEmailLink
-                user={committeeEmail.user}
-                domain={committeeEmail.domain}
-                subject={emailSubject}
-                className="font-medium text-stone-300 underline decoration-brand/40 decoration-2 underline-offset-4 transition-colors duration-200 hover:text-white"
-              >
-                Email the committee
-              </ProtectedEmailLink>
-              <a
-                href="#register"
-                className="font-medium text-stone-300 underline decoration-brand/40 decoration-2 underline-offset-4 transition-colors duration-200 hover:text-white"
-              >
-                Registration form
-              </a>
-            </nav>
-          </div>
+      {!comingSoon ? (
+        <footer id="contact" className="border-t border-brand-deep-border bg-brand-deep py-14 text-stone-200 md:py-16" role="contentinfo">
+          <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-4 md:flex-row md:items-start md:justify-between md:gap-8">
+            <div className="text-center md:text-left">
+              <p className="text-lg font-semibold text-white md:text-xl">Reunion Committee</p>
+              <nav className="mt-5 flex flex-col gap-4 text-lg md:text-xl" aria-label="Committee contact">
+                <ProtectedEmailLink
+                  user={committeeEmail.user}
+                  domain={committeeEmail.domain}
+                  subject={emailSubject}
+                  className="font-medium text-stone-300 underline decoration-brand/40 decoration-2 underline-offset-4 transition-colors duration-200 hover:text-white"
+                >
+                  Email the committee
+                </ProtectedEmailLink>
+                <a
+                  href="#register"
+                  className="font-medium text-stone-300 underline decoration-brand/40 decoration-2 underline-offset-4 transition-colors duration-200 hover:text-white"
+                >
+                  Registration form
+                </a>
+              </nav>
+            </div>
 
-          <a
-            href="#top"
-            className="inline-flex items-center gap-2 rounded-full border border-stone-500/70 bg-[#2d1717] px-6 py-3 text-lg font-semibold text-white shadow-md transition-colors duration-200 hover:bg-[#3a1d1d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-xl"
-            aria-label="Back to top"
-          >
-            <span aria-hidden="true" className="text-xl">
-              ↑
-            </span>
-            Back to top
-          </a>
-        </div>
-        <p className="mt-12 px-4 text-center text-sm leading-relaxed text-stone-400 sm:text-base md:text-lg">
-          © {siteConfig.copyrightYear} Sahuaro High School Class of {graduationYear}. All rights reserved.
-        </p>
-      </footer>
+            <a
+              href="#top"
+              className="inline-flex items-center gap-2 rounded-full border border-stone-500/70 bg-brand-deep-surface px-6 py-3 text-lg font-semibold text-white shadow-md transition-colors duration-200 hover:bg-brand-deep-surface-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-xl"
+              aria-label="Back to top"
+            >
+              <span aria-hidden="true" className="text-xl">
+                ↑
+              </span>
+              Back to top
+            </a>
+          </div>
+        </footer>
+      ) : null}
 
     </>
   );

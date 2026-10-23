@@ -162,7 +162,7 @@ function venueMarkerIcon(selected: boolean) {
     html: `
       <span class="venue-marker-pin" style="transform:scale(${scale});filter:drop-shadow(0 2px 6px rgba(180,83,9,.4))">
         <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
-          <circle cx="14" cy="14" r="12" fill="#d97706" stroke="#fff" stroke-width="2.5"/>
+          <circle cx="14" cy="14" r="12" fill="#576681" stroke="#fff" stroke-width="2.5"/>
           <path fill="#fff" d="M14 7.5l1.76 3.57 3.94.57-2.85 2.78.67 3.92L14 16.4l-3.52 1.94.67-3.92-2.85-2.78 3.94-.57L14 7.5z"/>
         </svg>
       </span>

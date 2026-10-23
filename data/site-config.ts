@@ -1,9 +1,10 @@
 export const siteConfig = {
+  /** When true, the site shows only the hero and a coming-soon message. */
+  comingSoon: true,
   graduationYear: 1977,
   classShort: "'77",
   reunionLabel: '50th Reunion',
   heroDatesLine: 'Dates coming soon · Tucson, Arizona',
-  copyrightYear: 2027,
   committeeEmail: { user: 'sahuaroclassof1977', domain: 'gmail.com' },
   emailSubject: 'Sahuaro High School Class of 1977 Reunion',
   paymentMemo: "Class of '77 reunion",

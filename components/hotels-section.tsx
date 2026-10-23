@@ -115,7 +115,7 @@ function FilterToggleGroup({
             onClick={() => onFilterChange(option)}
             className={`min-h-11 flex-1 rounded-xl border-2 px-4 py-2.5 text-base font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900 sm:flex-none ${
               isActive
-                ? 'border-brand bg-rose-50 text-stone-900'
+                ? 'border-brand/60 bg-slate-50 text-stone-900'
                 : 'border-stone-400 bg-white text-stone-900 hover:border-stone-600 hover:bg-stone-50'
             }`}
           >
@@ -244,7 +244,7 @@ export function HotelsSection() {
                     onClick={() => selectLocation(location.id)}
                     className={`panel w-full scroll-mt-28 p-5 text-left transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-900 ${
                       isActive
-                        ? 'border-2 border-brand bg-rose-50/40 shadow-[inset_0_0_0_1px_rgb(190_18_60/0.35)]'
+                        ? 'border-2 border-brand/50 bg-slate-50/80 shadow-[inset_0_0_0_1px_rgb(87_102_129/0.2)]'
                         : 'border-2 border-stone-200'
                     }`}
                     aria-pressed={isActive}

@@ -7,9 +7,9 @@
   --surface-strong: #f2efe9;
   --ink: #1f2937;
   --ink-soft: #475569;
-  --brand: #990000;
-  --brand-deep: #7a0000;
-  --brand-warm: #d97706;
+  --brand: #576681;
+  --brand-deep: #48566d;
+  --brand-accent: #8b9bb8;
 }
 
 @layer base {
@@ -18,8 +18,8 @@
     font-family: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
     color: var(--ink);
     background:
-      radial-gradient(circle at 5% 0%, rgb(153 0 0 / 0.06), transparent 35%),
-      radial-gradient(circle at 95% 10%, rgb(217 119 6 / 0.05), transparent 30%),
+      radial-gradient(circle at 5% 0%, rgb(87 102 129 / 0.04), transparent 35%),
+      radial-gradient(circle at 95% 10%, rgb(139 155 184 / 0.035), transparent 30%),
       var(--surface);
   }
 
@@ -61,7 +61,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-base font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-hover hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+    @apply inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-base font-semibold text-white shadow-md shadow-brand/15 transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-hover hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
   }
 
   .btn-secondary {
@@ -128,7 +128,7 @@
 
   .hotels-map .leaflet-control-zoom a:hover {
     background: #fafaf9 !important;
-    color: #990000 !important;
+    color: var(--brand) !important;
   }
 
   .hotels-map .leaflet-control-zoom-in {

@@ -40,14 +40,14 @@ export function AttendeeBadges({ names }: AttendeeBadgesProps) {
           return (
             <div
               key={name}
-              className={`${visibleOnMobile ? 'block' : 'hidden'} ${visibleOnDesktop ? 'md:block' : 'md:hidden'} rounded-xl border border-rose-200/60 px-4 py-3 text-base font-medium text-stone-800 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:rotate-[0.2deg] hover:shadow-md md:text-lg`}
+              className={`${visibleOnMobile ? 'block' : 'hidden'} ${visibleOnDesktop ? 'md:block' : 'md:hidden'} rounded-xl border border-slate-200/70 px-4 py-3 text-base font-medium text-stone-800 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:rotate-[0.2deg] hover:shadow-md md:text-lg`}
               style={{
                 backgroundImage:
                   index % 3 === 0
-                    ? 'linear-gradient(135deg, rgba(255,241,242,1) 0%, rgba(255,255,255,1) 55%, rgba(250,250,249,1) 100%)'
+                    ? 'linear-gradient(135deg, rgba(248,250,252,1) 0%, rgba(255,255,255,1) 55%, rgba(250,250,249,1) 100%)'
                     : index % 3 === 1
-                      ? 'linear-gradient(155deg, rgba(255,255,255,1) 0%, rgba(255,241,242,1) 45%, rgba(250,250,249,1) 100%)'
-                      : 'linear-gradient(120deg, rgba(250,250,249,1) 0%, rgba(255,241,242,1) 50%, rgba(255,255,255,1) 100%)',
+                      ? 'linear-gradient(155deg, rgba(255,255,255,1) 0%, rgba(248,250,252,1) 45%, rgba(250,250,249,1) 100%)'
+                      : 'linear-gradient(120deg, rgba(250,250,249,1) 0%, rgba(248,250,252,1) 50%, rgba(255,255,255,1) 100%)',
               }}
             >
               {name}

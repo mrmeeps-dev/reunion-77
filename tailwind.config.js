@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-aerial': "url('/photos/dulcey-lima-hr1smkEtjzI-unsplash.jpg')",
+        'hero-aerial': "url('/photos/frankie-lopez-t3wdraaj72Q-unsplash.jpg')",
       },
       fontFamily: {
         sans: [
@@ -16,9 +16,13 @@ module.exports = {
       },
       colors: {
         brand: {
-          DEFAULT: '#990000',
+          DEFAULT: '#576681',
           foreground: '#ffffff',
-          hover: '#7a0000',
+          hover: '#48566d',
+          deep: '#2e3544',
+          'deep-border': '#3a4152',
+          'deep-surface': '#353c4d',
+          'deep-surface-hover': '#414958',
         },
       },
       maxWidth: {
