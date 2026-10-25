@@ -21,6 +21,10 @@ type HotelsMapProps = {
   enablePan: boolean;
   onLocationSelect: (id: string) => void;
   fitBoundsKey: string;
+  /** Lower values zoom out further when fitting a single marker. */
+  fitMaxZoom?: number;
+  /** Expands bounds around a lone marker (degrees lat/lng). */
+  singleMarkerBoundsPad?: number;
 };
 
 function isValidCoordinate(lat: number, lng: number): boolean {
@@ -34,9 +38,13 @@ function validPositions(positions: [number, number][]): [number, number][] {
 function FitAllBounds({
   positions,
   fitBoundsKey,
+  fitMaxZoom = 14,
+  singleMarkerBoundsPad,
 }: {
   positions: [number, number][];
   fitBoundsKey: string;
+  fitMaxZoom?: number;
+  singleMarkerBoundsPad?: number;
 }) {
   const map = useMap();
   const lastFitKey = useRef('');
@@ -47,16 +55,23 @@ function FitAllBounds({
     if (lastFitKey.current === fitBoundsKey) return;
     lastFitKey.current = fitBoundsKey;
 
-    const bounds =
-      safePositions.length === 1
-        ? L.latLngBounds([safePositions[0], safePositions[0]])
-        : L.latLngBounds(safePositions);
+    let bounds: L.LatLngBounds;
+    if (safePositions.length === 1) {
+      const [lat, lng] = safePositions[0];
+      const pad = singleMarkerBoundsPad ?? 0;
+      bounds = L.latLngBounds(
+        [lat - pad, lng - pad],
+        [lat + pad, lng + pad],
+      );
+    } else {
+      bounds = L.latLngBounds(safePositions);
+    }
 
     const fitAllMarkers = () => {
       map.invalidateSize();
       map.fitBounds(bounds, {
         padding: [48, 48],
-        maxZoom: 14,
+        maxZoom: fitMaxZoom,
       });
     };
 
@@ -68,7 +83,7 @@ function FitAllBounds({
       window.clearTimeout(refitTimer);
       map.off('resize', fitAllMarkers);
     };
-  }, [fitBoundsKey, map, positions]);
+  }, [fitBoundsKey, fitMaxZoom, map, positions, singleMarkerBoundsPad]);
 
   return null;
 }
@@ -182,6 +197,8 @@ export function HotelsMap({
   enablePan,
   onLocationSelect,
   fitBoundsKey,
+  fitMaxZoom,
+  singleMarkerBoundsPad,
 }: HotelsMapProps) {
   const allPositions = useMemo(
     () =>
@@ -203,7 +220,12 @@ export function HotelsMap({
         url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}"
         maxZoom={16}
       />
-      <FitAllBounds positions={allPositions} fitBoundsKey={fitBoundsKey} />
+      <FitAllBounds
+        positions={allPositions}
+        fitBoundsKey={fitBoundsKey}
+        fitMaxZoom={fitMaxZoom}
+        singleMarkerBoundsPad={singleMarkerBoundsPad}
+      />
       <PanToActiveLocation
         panToLat={panToLat}
         panToLng={panToLng}

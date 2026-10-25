@@ -4,7 +4,7 @@ export const siteConfig = {
   graduationYear: 1977,
   classShort: "'77",
   reunionLabel: '50th Reunion',
-  heroDatesLine: 'Dates coming soon · Tucson, Arizona',
+  heroDatesLine: 'October 15, 2027 · Tucson, Arizona',
   committeeEmail: { user: 'sahuaroclassof1977', domain: 'gmail.com' },
   emailSubject: 'Sahuaro High School Class of 1977 Reunion',
   paymentMemo: "Class of '77 reunion",

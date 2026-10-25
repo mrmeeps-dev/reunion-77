@@ -4,7 +4,13 @@ import { ProtectedPhoneLink } from '@/components/protected-phone-link';
 import { AttendeesSection } from '@/components/attendees-section';
 import { FridayPaymentGuideLine, FridayPriceCallout } from '@/components/friday-pricing';
 import { HotelsSection } from '@/components/hotels-section';
-import { EVENT_VENUES, formatVenueAddress, venueDirectionsUrl } from '@/data/event-venues';
+import { SingleVenueMap } from '@/components/single-venue-map';
+import {
+  EVENT_VENUES,
+  formatVenueAddress,
+  formatVenueAddressWithPlace,
+  venueDirectionsUrl,
+} from '@/data/event-venues';
 import { committeeEmailAddress, siteConfig } from '@/data/site-config';
 import Image from 'next/image';
 
@@ -16,6 +22,7 @@ const saturdayVenue = EVENT_VENUES.find((venue) => venue.id === 'gardens-at-bear
 const fridayDirectionsUrl = venueDirectionsUrl(fridayVenue);
 const saturdayDirectionsUrl = venueDirectionsUrl(saturdayVenue);
 const fridayAddress = formatVenueAddress(fridayVenue);
+const fridayAddressLine = formatVenueAddressWithPlace(fridayVenue);
 const saturdayAddress = formatVenueAddress(saturdayVenue);
 
 export default function Home() {
@@ -102,7 +109,7 @@ export default function Home() {
 
       <header
         className={`relative flex items-center justify-center overflow-hidden px-4 py-16 ${
-          comingSoon ? 'min-h-screen' : 'min-h-[min(90vh,56rem)] sm:min-h-[84vh]'
+          comingSoon ? 'min-h-[min(78vh,44rem)] sm:min-h-[72vh]' : 'min-h-[min(90vh,56rem)] sm:min-h-[84vh]'
         }`}
       >
         <div className="absolute inset-0 bg-hero-aerial bg-cover bg-center" role="img" aria-label="Tucson desert landscape at sunset" />
@@ -117,11 +124,22 @@ export default function Home() {
             Sahuaro High School Class of <span className="inline-flex items-baseline gap-[0.075em] whitespace-nowrap tabular-nums tracking-normal">&rsquo;77</span>
           </h1>
           <h2 className="mt-5 text-2xl font-extrabold leading-snug text-gray-100 md:mt-6 md:text-3xl">The {reunionLabel}</h2>
+          {comingSoon ? (
+            <div className="mt-6 space-y-2">
+              <p className="text-xl font-semibold text-white md:text-2xl">{fridayVenue.name}</p>
+              <p className="text-base leading-relaxed text-gray-200 md:text-lg">{fridayAddressLine}</p>
+            </div>
+          ) : null}
           <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-200 md:text-xl">
             {comingSoon
-              ? 'We\u2019re getting the full reunion site ready. Schedule, registration, hotels, and more will be here soon.'
+              ? 'Registration, schedule details, hotels, and more info coming soon.'
               : 'A weekend of reconnecting, celebrating, and sharing memories with classmates from the Class of \u201977.'}
           </p>
+          {comingSoon ? (
+            <a href="#location" className="btn-secondary mt-10 px-8 py-4 text-lg md:text-xl">
+              View location
+            </a>
+          ) : null}
           {!comingSoon ? (
             <>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -148,7 +166,38 @@ export default function Home() {
       </header>
 
       <main id="main-content">
-        {!comingSoon ? (
+        {comingSoon ? (
+          <section
+            id="location"
+            className="section-shell scroll-mt-24 bg-white pb-20 md:scroll-mt-28 md:pb-24"
+            aria-labelledby="location-heading"
+          >
+            <div className="section-frame space-y-10">
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="section-kicker">Save the date</p>
+                <h2 id="location-heading" className="section-heading">
+                  {fridayVenue.schedule}
+                </h2>
+                <p className="mt-3 text-xl font-semibold text-stone-900 md:text-2xl">{fridayVenue.name}</p>
+                <p className="mt-2 text-base leading-relaxed text-stone-600 md:text-lg">
+                  <a
+                    href={fridayDirectionsUrl}
+                    className="modern-link font-normal text-stone-600"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {fridayAddressLine}
+                  </a>
+                </p>
+                <p className="section-subheading mt-5">
+                  More reunion details are on the way — check back for registration, the full schedule, and travel
+                  info.
+                </p>
+              </div>
+              <SingleVenueMap venue={fridayVenue} />
+            </div>
+          </section>
+        ) : (
           <>
         <section id="schedule" className="reveal section-shell scroll-mt-24 bg-white md:scroll-mt-28" aria-labelledby="itinerary-heading" data-reveal>
           <div className="section-frame">
@@ -161,10 +210,10 @@ export default function Home() {
             <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-10">
               <article className="panel flex flex-col p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-10">
                 <div className="space-y-3">
-                  <p className="text-sm font-medium uppercase tracking-wide text-stone-500">Friday, Oct 9</p>
+                  <p className="text-sm font-medium uppercase tracking-wide text-stone-500">{fridayVenue.schedule}</p>
                   <h3 className="text-2xl font-extrabold leading-tight tracking-tight text-stone-900 md:text-[1.65rem] lg:text-3xl">The Big Event</h3>
                   <p className="text-lg leading-relaxed text-stone-700 md:text-xl">
-                    Ticketed dinner at the Savoy Opera House in Trail Dust Town.
+                    Ticketed dinner at the {fridayVenue.name} in {fridayVenue.placeName}.
                   </p>
                 </div>
 
@@ -418,7 +467,7 @@ export default function Home() {
           </div>
         </section>
           </>
-        ) : null}
+        )}
       </main>
 
       {!comingSoon ? (

@@ -1,6 +1,8 @@
 export type EventVenue = {
   id: string;
   name: string;
+  /** e.g. Trail Dust Town */
+  placeName?: string;
   eventLabel: string;
   schedule: string;
   addressLine1: string;
@@ -15,8 +17,9 @@ export const EVENT_VENUES: EventVenue[] = [
   {
     id: 'savoy-opera-house',
     name: 'Savoy Opera House',
+    placeName: 'Trail Dust Town',
     eventLabel: 'The Big Event',
-    schedule: 'Friday, Oct 9 · 6:00 PM',
+    schedule: 'October 15, 2027',
     addressLine1: '6541 E Tanque Verde Rd #13',
     city: 'Tucson',
     state: 'AZ',
@@ -40,6 +43,12 @@ export const EVENT_VENUES: EventVenue[] = [
 
 export function formatVenueAddress(venue: EventVenue): string {
   return `${venue.addressLine1}, ${venue.city}, ${venue.state} ${venue.zip}`;
+}
+
+/** Street address with optional place name (e.g. Trail Dust Town). */
+export function formatVenueAddressWithPlace(venue: EventVenue): string {
+  const street = formatVenueAddress(venue);
+  return venue.placeName ? `${venue.placeName} · ${street}` : street;
 }
 
 export function venueDirectionsUrl(venue: EventVenue): string {
